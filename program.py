@@ -1,5 +1,4 @@
 import argparse
-import math
 from typing import Any, List, Tuple
 
 MIN_VALUE = 1
@@ -15,11 +14,11 @@ def find_all_ancestors(node1: int, node2: int) -> Tuple[List[int], List[int]]:
     ancestors_node2: List[int] = []
 
     while x >= MIN_VALUE:
-        x = math.floor(x / DIVISOR)
+        x //= DIVISOR
         ancestors_node1.append(x)
 
     while y >= MIN_VALUE:
-        y = math.floor(y / DIVISOR)
+        y //=DIVISOR
         ancestors_node2.append(y)
 
     return ancestors_node1, ancestors_node2
@@ -36,16 +35,17 @@ def find_lowest_common_ancestor(ancestors1: List[int], ancestors2: List[int]) ->
     return int(common[0]) if len(common) else 1  # type: ignore
 
 
-def input(input_value: str) -> str:
-    if int(input_value) not in range(MIN_VALUE, MAX_VALUE):
-        raise ValueError
-    return input_value
+def input_value(input_value: str) -> int:
+    result = int(input_value)
+    if int(result) not in range(MIN_VALUE, MAX_VALUE):
+        raise argparse.ArgumentTypeError(f"input must be a valid integer between {MIN_VALUE} and {MAX_VALUE}, instead got {input_value}")
+    return result
 
 
 def user_input() -> Any:
     parser = argparse.ArgumentParser(description="Find the lowest common ancestor for two binary tree nodes")
     parser.add_argument(
-        "integers", metavar="node id", type=input, nargs=2, help=f"two integer node ids; value {MIN_VALUE} >= N <={MAX_VALUE}"
+        "integers", metavar="node id", type=input_value, nargs=2, help=f"two integer node ids; value {MIN_VALUE} >= N <={MAX_VALUE}"
     )
 
     args = parser.parse_args()
@@ -54,5 +54,5 @@ def user_input() -> Any:
 
 def execute() -> None:
     nodes = user_input()
-    ancestors1, ancestors2 = find_all_ancestors(int(nodes[0]), int(nodes[1]))
+    ancestors1, ancestors2 = find_all_ancestors(nodes[0], nodes[1])
     print(find_lowest_common_ancestor(ancestors1, ancestors2))
