@@ -37,7 +37,7 @@ def find_lowest_common_ancestor(ancestors1: List[int], ancestors2: List[int]) ->
 
 def input_value(input_value: str) -> int:
     result = int(input_value)
-    if int(result) not in range(MIN_VALUE, MAX_VALUE):
+    if result not in range(MIN_VALUE, MAX_VALUE):
         raise argparse.ArgumentTypeError(f"input must be a valid integer between {MIN_VALUE} and {MAX_VALUE}, instead got {input_value}")
     return result
 
