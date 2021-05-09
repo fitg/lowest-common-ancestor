@@ -17,7 +17,7 @@ def ancestors(node: int) -> Generator[int, None, None]:
 
 
 def find_lowest_common_ancestor(ancestors1: List[int], ancestors2: List[int]) -> int:
-    return max(set(ancestors1).intersection(ancestors2), default=1)
+    return max(set(ancestors1).intersection(ancestors2), default=MIN_VALUE)
 
 
 def input_value(input_value: str) -> int:
