@@ -1,5 +1,4 @@
 import argparse
-import functools
 from typing import cast, Generator, List
 
 MIN_VALUE = 1
@@ -18,9 +17,8 @@ def ancestors(node: int) -> Generator[int, None, None]:
 
 
 def find_lowest_common_ancestor(ancestor_groups: List[List[int]]) -> int:
-    groups = iter(ancestor_groups)
-    first_group = next(groups)
-    intersection = functools.reduce(set.intersection, groups, set(first_group))
+    first, *rest = ancestor_groups
+    intersection = set(first).intersection(*rest)
     # TODO: using 1 as node, still returns 0
     return max(intersection, default=MIN_VALUE)
 
