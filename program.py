@@ -21,6 +21,7 @@ def find_lowest_common_ancestor(ancestor_groups: List[List[int]]) -> int:
     groups = iter(ancestor_groups)
     first_group = next(groups)
     intersection = functools.reduce(set.intersection, groups, set(first_group))
+    # TODO: using 1 as node, still returns 0
     return max(intersection, default=MIN_VALUE)
 
 
@@ -47,7 +48,7 @@ def user_input() -> List[int]:
     )
 
     args = parser.parse_args()
-    return cast(List[int],args.integers)
+    return cast(List[int], args.integers)
 
 
 def execute() -> None:
