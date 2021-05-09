@@ -6,21 +6,22 @@ Fun playground that is to be used to test out various scenarios in python.
 
 ## Installing dependencies
 
-You are given two nodes in a symmetrical binary tree.
-The tree is numbered incrementally from left to right.
-Each node can only have one parent and two children.
-Without creating a tree structure in memory
-try to find the lowest common ancestor.
-https://en.wikipedia.org/wiki/Lowest_common_ancestor.
-Nodes start from 1.
-
-Examples:
-6, 5 -> lowest common ancestor: 1
-18, 5 -> lowest common ancestor: 2
-Conditions
-1 >= node1 <= 1000000
-1 >= node2 <= 1000000
-the program takes 2 ints as an input and returns 1 int
+You are given two nodes in a symmetrical binary tree.<br />
+The tree is numbered incrementally from left to right.<br />
+Each node can only have one parent and two children.<br />
+Without creating a tree structure in memory<br />
+try to find the lowest common ancestor.<br />
+https://en.wikipedia.org/wiki/Lowest_common_ancestor.<br />
+Nodes start from 1.<br />
+<br />
+Examples:<br />
+6, 5 -> lowest common ancestor: 1<br />
+18, 5 -> lowest common ancestor: 2<br />
+Conditions<br />
+1 >= node1 <= 1000000<br />
+1 >= node2 <= 1000000<br />
+the program takes 2 ints as an input and returns 1 int<br />
+<br />
 
 ```sh
 # install python version
