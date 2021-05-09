@@ -30,8 +30,7 @@ def find_lowest_common_ancestor(ancestors1: List[int], ancestors2: List[int]) ->
     merger: List[List[int]] = [ancestors1, ancestors2]
     # find common elements in both lists
     common = list(set.intersection(*map(set, merger)))  # type: ignore
-    # cleanup and sort the list
-    common.remove(0)  # type: ignore
+    # sort the list in descending order to find the ancestor
     common.sort(reverse=True)
     # return the top element as the lowest common ancestor
     return int(common[0]) if len(common) else 1  # type: ignore
