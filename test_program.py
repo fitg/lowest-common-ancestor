@@ -45,6 +45,17 @@ def test_find_all_ancestors_both_border_condition2() -> None:
 
 
 @pytest.mark.unittest
+def test_find_all_ancestors_both_more_than_two_nodes() -> None:
+    expected = [
+        [611, 305, 152, 76, 38, 19, 9, 4, 2, 1, 0],
+        [560, 280, 140, 70, 35, 17, 8, 4, 2, 1, 0],
+        [31156, 15578, 7789, 3894, 1947, 973, 486, 243, 121, 60, 30, 15, 7, 3, 1, 0],
+    ]
+    ancestors = find_all_ancestors([1222, 1121, 62312])
+    assert ancestors == expected
+
+
+@pytest.mark.unittest
 def test_find_lowest_common_ancestor_simple() -> None:
     expected = 1
     actual = find_lowest_common_ancestor(
@@ -75,6 +86,19 @@ def test_find_lowest_common_ancestor_border_condition() -> None:
         [
             [0],
             [0],
+        ]
+    )
+    assert actual == expected
+
+
+@pytest.mark.unittest
+def test_find_lowest_common_ancestor_more_than_two_nodes() -> None:
+    expected = 1
+    actual = find_lowest_common_ancestor(
+        [
+            [611, 305, 152, 76, 38, 19, 9, 4, 2, 1, 0],
+            [560, 280, 140, 70, 35, 17, 8, 4, 2, 1, 0],
+            [31156, 15578, 7789, 3894, 1947, 973, 486, 243, 121, 60, 30, 15, 7, 3, 1, 0],
         ]
     )
     assert actual == expected
