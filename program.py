@@ -1,13 +1,14 @@
 import argparse
-from typing import Any, Generator, List, Tuple
+import functools
+from typing import cast, Generator, List
 
 MIN_VALUE = 1
 MAX_VALUE = 1000000
 DIVISOR = 2
 
 
-def find_all_ancestors(node1: int, node2: int) -> Tuple[List[int], List[int]]:
-    return list(ancestors(node1)), list(ancestors(node2))
+def find_all_ancestors(nodes: List[int]) -> List[List[int]]:
+    return [list(ancestors(node)) for node in nodes]
 
 
 def ancestors(node: int) -> Generator[int, None, None]:
@@ -16,8 +17,11 @@ def ancestors(node: int) -> Generator[int, None, None]:
         yield node
 
 
-def find_lowest_common_ancestor(ancestors1: List[int], ancestors2: List[int]) -> int:
-    return max(set(ancestors1).intersection(ancestors2), default=MIN_VALUE)
+def find_lowest_common_ancestor(ancestor_groups: List[List[int]]) -> int:
+    groups = iter(ancestor_groups)
+    first_group = next(groups)
+    intersection = functools.reduce(set.intersection, groups, set(first_group))
+    return max(intersection, default=MIN_VALUE)
 
 
 def input_value(input_value: str) -> int:
@@ -32,7 +36,7 @@ def input_value(input_value: str) -> int:
     return result
 
 
-def user_input() -> Any:
+def user_input() -> List[int]:
     parser = argparse.ArgumentParser(description="Find the lowest common ancestor for two binary tree nodes")
     parser.add_argument(
         "integers",
@@ -43,10 +47,8 @@ def user_input() -> Any:
     )
 
     args = parser.parse_args()
-    return args.integers
+    return cast(List[int],args.integers)
 
 
 def execute() -> None:
-    nodes = user_input()
-    ancestors1, ancestors2 = find_all_ancestors(nodes[0], nodes[1])
-    print(find_lowest_common_ancestor(ancestors1, ancestors2))
+    print(find_lowest_common_ancestor(find_all_ancestors(user_input())))
