@@ -17,14 +17,7 @@ def ancestors(node: int) -> Generator[int, None, None]:
 
 
 def find_lowest_common_ancestor(ancestors1: List[int], ancestors2: List[int]) -> int:
-    # merge both lists
-    merger: List[List[int]] = [ancestors1, ancestors2]
-    # find common elements in both lists
-    common = list(set.intersection(*map(set, merger)))  # type: ignore
-    # sort the list in descending order to find the ancestor
-    common.sort(reverse=True)
-    # return the top element as the lowest common ancestor
-    return int(common[0]) if len(common) else MIN_VALUE  # type: ignore
+    return max(set(ancestors1).intersection(ancestors2), default=1)
 
 
 def input_value(input_value: str) -> int:
